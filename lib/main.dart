@@ -1,5 +1,5 @@
 import 'package:budget_tracker/controller/budget_controller.dart';
-import 'package:budget_tracker/intro_screen.dart';
+import 'package:budget_tracker/root.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,14 +17,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Budget Tracker',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blue,
       ),
-      home: IntroScreen(),
+      home: Root(),
     );
   }
 }
