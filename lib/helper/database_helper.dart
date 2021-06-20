@@ -70,4 +70,18 @@ class DatabaseHelper {
     final int result = await db.delete(tableName, where: "$columnId = ?", whereArgs: [id]);
     return result;
   }
+
+  Future<int> addToBudget(Budget budget, int amount) async {
+    Database db = await this.db;
+    int newAmount = budget.budget + amount;
+    final int result = await db.rawUpdate("UPDATE $tableName SET $columnBudget = ? WHERE $columnId = ?", [newAmount, 0]);
+    return result;
+  }
+
+  Future<int> removeFromBudget(Budget budget, int amount) async {
+    Database db = await this.db;
+    int newAmount = budget.budget - amount;
+    final int result = await db.rawUpdate("UPDATE $tableName SET $columnBudget = ? WHERE $columnId = ?", [newAmount, 0]);
+    return result;
+  }
 }
