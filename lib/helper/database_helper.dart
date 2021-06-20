@@ -8,6 +8,7 @@ final String tableName = 'budgetTable';
 final String columnId = "id";
 final String columnUserName = 'name';
 final String columnBudget = 'budget';
+final String columnPlan = 'plan';
 
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._instance();
@@ -33,7 +34,8 @@ class DatabaseHelper {
         CREATE TABLE $tableName (
           $columnId INTEGER PRIMARY KEY,
           $columnUserName TEXT NOT NULL,
-          $columnBudget INTEGER NOT NULL)
+          $columnBudget INTEGER NOT NULL,
+          $columnPlan INTEGER NOT NULL)
     ''');
   }
 

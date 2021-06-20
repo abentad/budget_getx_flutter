@@ -1,6 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:budget_tracker/helper/database_helper.dart';
 import 'package:budget_tracker/model/budget.dart';
+import 'package:budget_tracker/splashScreen.dart';
 import 'package:get/get.dart';
 
 class BudgetController extends GetxController {
@@ -42,6 +43,13 @@ class BudgetController extends GetxController {
     await DatabaseHelper.instance.removeFromBudget(_budgetList[0], amount);
     _budgetList = await DatabaseHelper.instance.getBudgetList();
     print("newAmount: ${_budgetList[0].budget}");
+    update();
+  }
+
+  void resetAccount(int id) async {
+    await DatabaseHelper.instance.deleteBudget(id);
+    _budgetList.clear();
+    print('Account reseted.');
     update();
   }
 }

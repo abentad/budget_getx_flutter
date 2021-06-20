@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class IntroScreen extends StatelessWidget {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _budgetAmountController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _budgetAmountController = TextEditingController();
+  final TextEditingController _planAmountController = TextEditingController();
 
-  BudgetController _budgetController = Get.find<BudgetController>();
+  final BudgetController _budgetController = Get.find<BudgetController>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +48,21 @@ class IntroScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: size.height * 0.03),
+              TextFormField(
+                controller: _planAmountController,
+                decoration: InputDecoration(
+                  hintText: "plan",
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 16.0),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                ),
+              ),
+              SizedBox(height: size.height * 0.03),
               MaterialButton(
                 onPressed: () async {
-                  Budget newBudget = Budget(id: 0, name: _nameController.text, budget: int.parse("${_budgetAmountController.text}"));
+                  Budget newBudget =
+                      Budget(id: 0, name: _nameController.text, budget: int.parse("${_budgetAmountController.text}"), plan: int.parse("${_planAmountController.text}"));
                   _budgetController.introduceUser(newBudget);
                   await Future.delayed(const Duration(seconds: 2), () {
                     Get.offAll(() => HomeScreen(), transition: Transition.cupertino);
