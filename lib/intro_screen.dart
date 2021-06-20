@@ -1,7 +1,14 @@
+import 'package:budget_tracker/controller/budget_controller.dart';
+import 'package:budget_tracker/home_screen.dart';
+import 'package:budget_tracker/model/budget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class IntroScreen extends StatelessWidget {
-  const IntroScreen({Key? key}) : super(key: key);
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _budgetAmountController = TextEditingController();
+
+  BudgetController _budgetController = Get.find<BudgetController>();
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +24,7 @@ class IntroScreen extends StatelessWidget {
               Text("Hi \nTell us...", style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w600)),
               SizedBox(height: size.height * 0.03),
               TextFormField(
+                controller: _nameController,
                 cursorColor: Colors.black,
                 style: TextStyle(fontSize: 18.0, color: Colors.black),
                 decoration: InputDecoration(
@@ -29,6 +37,7 @@ class IntroScreen extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.03),
               TextFormField(
+                controller: _budgetAmountController,
                 decoration: InputDecoration(
                   hintText: "budget",
                   hintStyle: TextStyle(color: Colors.grey, fontSize: 16.0),
@@ -39,7 +48,11 @@ class IntroScreen extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.03),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Budget newBudget = Budget(id: 0, name: _nameController.text, budget: int.parse("${_budgetAmountController.text}"));
+                  _budgetController.introduceUser(newBudget);
+                  Get.offAll(() => HomeScreen(), transition: Transition.cupertino);
+                },
                 height: 50.0,
                 minWidth: double.infinity,
                 color: Colors.black,
