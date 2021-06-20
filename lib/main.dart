@@ -1,5 +1,5 @@
 import 'package:budget_tracker/controller/budget_controller.dart';
-import 'package:budget_tracker/root.dart';
+import 'package:budget_tracker/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blue,
       ),
-      home: Root(),
+      home: SplashScreen(),
     );
   }
 }

@@ -48,10 +48,12 @@ class IntroScreen extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.03),
               MaterialButton(
-                onPressed: () {
+                onPressed: () async {
                   Budget newBudget = Budget(id: 0, name: _nameController.text, budget: int.parse("${_budgetAmountController.text}"));
                   _budgetController.introduceUser(newBudget);
-                  Get.offAll(() => HomeScreen(), transition: Transition.cupertino);
+                  await Future.delayed(const Duration(seconds: 2), () {
+                    Get.offAll(() => HomeScreen(), transition: Transition.cupertino);
+                  });
                 },
                 height: 50.0,
                 minWidth: double.infinity,

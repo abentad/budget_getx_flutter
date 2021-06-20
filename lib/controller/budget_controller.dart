@@ -14,7 +14,7 @@ class BudgetController extends GetxController {
   void onInit() async {
     // updateBudgetList();
     _budgetList = await DatabaseHelper.instance.getBudgetList();
-    print("on budgetController on init: $_budgetList");
+    // print("on budgetController on init: ${_budgetList[0]}");
     if (_budgetList.isNotEmpty) {
       _isUserIntroduced = true;
     } else {
